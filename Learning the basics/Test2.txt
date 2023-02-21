@@ -1,0 +1,1 @@
+Hello everyone, I'm testing the recording capabilities of the Whisper Open AI Python script that I got from the internet. Hopefully this can transcribe the voice of mine into text and it makes sense and there isn't any inconsistencies. Yes, thank you and goodbye.
