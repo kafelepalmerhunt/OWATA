@@ -14,7 +14,11 @@ AppName = "OWATA.ai"
 #AppDescription = "OpenAI Whisper Transcription App"
 
 PrimaryColour = "#73c9d3" #Blue
+PrimaryColour2 = "#6dbbc4" #Blue - slightly darker
 SecondaryColour = "#dddddd" #Light Grey
+SecondaryColour2 = "#808080" #Light Grey - slightly darker
+
+Transcribing = False
 
 ##################################################################
 #Window Initalistion
@@ -38,16 +42,52 @@ window.wm_iconphoto(False, photo)
 #Creating the window tabs
 #########################
 
+# Create an instance of ttk style
+style = ttk.Style()
+style.theme_create('Cloud', settings={
+    ".": {
+        "configure": {
+            "background": SecondaryColour,
+             "borderwidth" : 0,
+              "relief" : "flat" # All colors except for active tab-button
+        }
+    },
+    "TNotebook": {
+        "configure": {
+            "background": PrimaryColour, # color behind the notebook
+            "tabmargins": [5, 5, 0, 0],
+             "borderwidth" : 0 # [left margin, upper margin, right margin, margin beetwen tab and frames]
+        }
+    },
+    "TNotebook.Tab": {
+        "configure": {
+            "focuscolor": {"configure" : {"."}},
+            "background": PrimaryColour2,
+             "foreground" : "white", # Color of non selected tab-button
+            "padding": [20, 1], # [space beetwen text and horizontal tab-button border, space between text and vertical tab_button border]
+        },
+        "map": {
+            "background": [("selected", SecondaryColour)],
+             "foreground": [("selected", SecondaryColour2)], # Color of active tab
+            "expand": [("selected", [1, 1, 1, 0])] # [expanse of text]
+        }
+    }
+})
+
+style.theme_use('Cloud')
+
 #Widget that manages the collection of tab windows
 notebook = ttk.Notebook(window)
 
 #Creating the frames for each tab
-tab1 = ttk.Frame(notebook)
-tab2 = ttk.Frame(notebook)
+tab1 = ttk.Frame(notebook, borderwidth=0)
+tab2 = ttk.Frame(notebook, borderwidth=0)
+tab3 = ttk.Frame(notebook, borderwidth=0)
 
 #Adds the tabs to the notebook
 notebook.add(tab1, text = "File Transcription")
 notebook.add(tab2, text = "Live Transcription")
+notebook.add(tab3, text = "Text-to-Speech")
 notebook.grid(column=0, row=1)
 
 ####################################################################
@@ -90,7 +130,7 @@ def openfile():
     input_entry.insert(0, input_path)
 
     #Deletes any text in the transcription box when choosing a new path
-    T.delete("1.0", tk.END)
+    TranscriptionTextbox.delete("1.0", tk.END)
 
     return input_path, filename, setfilename
 
@@ -110,10 +150,10 @@ def transcribefile(filename):
     Transcription = (result['text'])
     
     #Deletes any existing text in the transcription box
-    T.delete("1.0", tk.END)
+    TranscriptionTextbox.delete("1.0", tk.END)
 
     #Adds the new transcription to the box and removes the space at the front via strip
-    T.insert(tk.END, Transcription.strip())
+    TranscriptionTextbox.insert(tk.END, Transcription.strip())
 
     return result, Transcription
 
@@ -129,11 +169,18 @@ def OpenTranscriptionTextFile():
     #Opens the transcription in notepad
     os.startfile('TextFiles\Transcription.txt')
 
+    print("outside function" + str(Transcribing))
+
 
 def transcribe_audio(path):
     
+    global Transcribing
+    Transcribing = True
+
+    print("Inside function" + str(Transcribing))
+
     #Deletes any existing text in the transcription box
-    T.delete("1.0", tk.END)
+    TranscriptionTextbox.delete("1.0", tk.END)
 
     model = whisper.load_model("base") # Change this to your desired model
     #print("Whisper model loaded.")
@@ -152,9 +199,9 @@ def transcribe_audio(path):
             srtFile.write(segment)
 
             #Adds the new transcription to the box and removes the space at the front via strip
-            T.insert(tk.END, segment.strip() + '\n\n')
-
-    return TextFilename
+            TranscriptionTextbox.insert(tk.END, segment.strip() + '\n\n')
+    
+    return TextFilename, Transcribing
 
 ###################################################################
 #Creating the menubar
@@ -182,85 +229,99 @@ editMenu.add_command(label = "Paste", command = PasteText)
 #Creating the whisper button and all options inside it
 whisperMenu = tk.Menu(menubar, tearoff=0)
 menubar.add_cascade(label = "Whisper", menu = whisperMenu)
+whisperMenu.add_command(label = "Tiny")
+whisperMenu.add_command(label = "Base")
+whisperMenu.add_command(label = "Small")
+whisperMenu.add_command(label = "Medium")
+whisperMenu.add_command(label = "Large")
 
 #Creating the view menu button and all options inside it
 viewMenu = tk.Menu(menubar, tearoff=0)
 menubar.add_cascade(label = "View", menu = viewMenu)
+viewMenu.add_command(label = "Statistics Bar")
 
 #Creating the help menu button and all options inside it
 helpMenu = tk.Menu(menubar, tearoff=0)
 menubar.add_cascade(label = "Help", menu = helpMenu)
+helpMenu.add_command(label = "Instructions")
+helpMenu.add_command(label = "About")
 
 ####################################################################
 #Drawing the interface button and text etc.
 ####################################################################
 
 #Creating the blue background at the top
-BlueBackground = tk.Frame(window,
+HeadingFrame = tk.Frame(window,
                             bg = PrimaryColour,
                             width = window_width,
-                            height = 60)
-BlueBackground.grid(column = 0, row = 0, sticky = tk.NW, columnspan = 1, padx = (0,0), pady = (0,1))
-BlueBackground.grid_propagate(0)
+                            height = 60,
+                            borderwidth = 0
+                            )
+HeadingFrame.grid(column = 0, row = 0, sticky = tk.NW, columnspan = 1, padx = (0,0), pady = (0,0))
+HeadingFrame.grid_propagate(0)
 
 #Creating the gey background for the main body
-WhiteBackground = tk.Frame(tab1,
+BodyFrame = tk.Frame(tab1,
                             bg = SecondaryColour,
                             width = window_width,
-                            height = (window_height))
-WhiteBackground.grid(column = 0, row = 0, sticky = tk.NW, columnspan = 1, padx = (0,0), pady = (0,1))
-WhiteBackground.grid_propagate(0)
+                            height = window_height,
+                            borderwidth = 0
+                            )
+BodyFrame.grid(column = 0, row = 0, sticky = tk.NW, columnspan = 1, padx = (0,0), pady = (0,1))
+BodyFrame.grid_propagate(0)
 
 #Creating the Main Label
-l = tk.Label(BlueBackground,
+MainTitle = tk.Label(HeadingFrame,
              text = AppName)
-l.config(font ="Calibri 32 bold", bg = PrimaryColour, fg = "white")
-l.grid(column = 0, row = 0, sticky = tk.NE, columnspan = 1, padx = (10,10), pady = (1,1))
+MainTitle.config(font ="Calibri 32 bold", bg = PrimaryColour, fg = "white")
+MainTitle.grid(column = 0, row = 0, sticky = tk.NE, columnspan = 1, padx = (10,10), pady = (1,1))
 
 #Creating the open file button in the window
-OpenFileButton = tk.Button(WhiteBackground, 
+OpenFileButton = tk.Button(BodyFrame, 
                             text = "Browse",
                             width = 10,
                             bg = PrimaryColour, activebackground = "black", activeforeground = "white",
                             relief = "flat",
                             command = openfile)
 OpenFileButton.grid(column = 0, row = 2, sticky = tk.NW, padx = (20,10), pady = (20,10))
-OpenFileButton.config(font = "Calibri 12", fg = "white")
+OpenFileButton.config(font = "Calibri 10", fg = "white")
 
 #Drawing the file path
-input_entry = tk.Entry(WhiteBackground,
+input_entry = tk.Entry(BodyFrame,
                         text = "", 
                         width = 80)
 input_entry.grid(column = 1, row = 2, sticky = tk.W, padx = (10,10), pady = (20,10))
 input_entry.config(font = ("Calibri, 10"))
 
 #Creating the transcribe button in the window
-TranscribeButton = tk.Button(WhiteBackground,
-                             text  ="Transcribe",
-                             width = 10,
-                             bg = PrimaryColour, activebackground = "black", activeforeground = "white",
-                             relief = "flat",
-                             command = lambda : transcribe_audio(filename))
+
+TranscribeButton = tk.Button(BodyFrame,
+                                text  ="Transcribe",
+                                width = 10,
+                                bg = PrimaryColour, activebackground = "black", activeforeground = "white",
+                                relief = "flat",
+                                command = lambda : transcribe_audio(filename))
+
 TranscribeButton.grid(column = 0, row = 3, sticky = tk.NW, padx = (20,10), pady = (20,10))
-TranscribeButton.config(font = "Calibri 12", fg = "white")
+TranscribeButton.config(font = "Calibri 10", fg = "white")
 
 #Creating the transcription text window
-T = tk.Text(WhiteBackground,
+TranscriptionTextbox = tk.Text(BodyFrame,
             height = 13, 
             width = 80, 
             relief = "groove")
-T.grid(column = 1 , row = 3, sticky = tk.NW, padx = (10,10), pady = (10,10))
-T.config(font = ("Calibri, 10"))
+TranscriptionTextbox.grid(column = 1 , row = 3, sticky = tk.NW, padx = (10,10), pady = (10,10))
+TranscriptionTextbox.config(font = ("Calibri, 10"))
 
 #Creating the save to .txt file button
-SaveButton = tk.Button(WhiteBackground,
+SaveButton = tk.Button(BodyFrame,
                         text = "Open .txt",
                         width = 10,
                         bg = PrimaryColour, activebackground = "black", activeforeground = "white",
                         relief = "flat",
                         command = OpenTranscriptionTextFile)
 SaveButton.grid(column = 0, row = 3, sticky = tk.S, padx = (20,10), pady = (20,10))
-SaveButton.config(font = "Calibri 12", fg = "white")
+SaveButton.config(font = "Calibri 10", fg = "white")
 
 #####################################################################
 #tkinter main loop

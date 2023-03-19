@@ -1,4 +1,72 @@
 1
+00:00:00.000 --> 00:00:12.000
+Today is Monday the 27th of February 2023. It is currently 7.54pm. The temperature is
+
+2
+00:00:12.000 --> 00:00:18.000
+4 degrees Celsius and it's cloudy. I'm currently in Edinburgh. Edinburgh, the United
+
+3
+00:00:18.000 --> 00:00:26.000
+Kingdom. I am using a Windows 10 Azus laptop. I'm currently sitting in my room and my desk.
+
+4
+00:00:26.000 --> 00:00:36.000
+The light is on. My bed is made. The heater is off. I need to make some food. I have my weekly plan
+
+5
+00:00:36.000 --> 00:00:42.000
+sitting next to me on the desk. I haven't filled out all the options just yet but I will get to that
+
+6
+00:00:42.000 --> 00:00:50.000
+at the end of the day. My phone is next to me here. It's at currently 16% battery. The time is
+
+7
+00:00:50.000 --> 00:01:00.000
+5 to 8 now. Just coming up to 1 minute of recording time now. Thank you very much for listening. Bye.
+
+1
+00:00:00.000 --> 00:00:12.000
+Today is Monday the 27th of February 2023. It is currently 7.54pm. The temperature is
+
+2
+00:00:12.000 --> 00:00:18.000
+4 degrees Celsius and it's cloudy. I'm currently in Edinburgh. Edinburgh, the United
+
+3
+00:00:18.000 --> 00:00:26.000
+Kingdom. I am using a Windows 10 Azus laptop. I'm currently sitting in my room and my desk.
+
+4
+00:00:26.000 --> 00:00:36.000
+The light is on. My bed is made. The heater is off. I need to make some food. I have my weekly plan
+
+5
+00:00:36.000 --> 00:00:42.000
+sitting next to me on the desk. I haven't filled out all the options just yet but I will get to that
+
+6
+00:00:42.000 --> 00:00:50.000
+at the end of the day. My phone is next to me here. It's at currently 16% battery. The time is
+
+7
+00:00:50.000 --> 00:01:00.000
+5 to 8 now. Just coming up to 1 minute of recording time now. Thank you very much for listening. Bye.
+
+1
+00:00:00.000 --> 00:00:10.000
+Hello everyone, I'm testing the recording capabilities of the Whisper Open AI Python script that I got from the internet.
+
+2
+00:00:10.000 --> 00:00:20.000
+Hopefully this can transcribe the voice of mine into text and it makes sense and there isn't any inconsistencies.
+
+3
+00:00:20.000 --> 00:00:30.000
+Yes, thank you and goodbye.
+
+1
 00:00:00.000 --> 00:00:10.000
 Hello everyone, I'm testing the recording capabilities of the Whisper Open AI Python script that I got from the internet.
 
@@ -33,4 +101,128 @@ Hopefully this can transcribe the voice of mine into text and it makes sense and
 3
 00:00:20.000 --> 00:00:30.000
 Yes, thank you and goodbye.
+
+1
+00:00:00.000 --> 00:00:10.000
+Hello everyone, I'm testing the recording capabilities of the Whisper Open AI Python script that I got from the internet.
+
+2
+00:00:10.000 --> 00:00:20.000
+Hopefully this can transcribe the voice of mine into text and it makes sense and there isn't any inconsistencies.
+
+3
+00:00:20.000 --> 00:00:30.000
+Yes, thank you and goodbye.
+
+1
+00:00:00.000 --> 00:00:10.000
+Hello everyone, I'm testing the recording capabilities of the Whisper Open AI Python script that I got from the internet.
+
+2
+00:00:10.000 --> 00:00:20.000
+Hopefully this can transcribe the voice of mine into text and it makes sense and there isn't any inconsistencies.
+
+3
+00:00:20.000 --> 00:00:30.000
+Yes, thank you and goodbye.
+
+1
+00:00:00.000 --> 00:00:10.000
+Hello everyone, I'm testing the recording capabilities of the Whisper Open AI Python script that I got from the internet.
+
+2
+00:00:10.000 --> 00:00:20.000
+Hopefully this can transcribe the voice of mine into text and it makes sense and there isn't any inconsistencies.
+
+3
+00:00:20.000 --> 00:00:30.000
+Yes, thank you and goodbye.
+
+1
+00:00:00.000 --> 00:00:10.000
+Hello everyone, I'm testing the recording capabilities of the Whisper Open AI Python script that I got from the internet.
+
+2
+00:00:10.000 --> 00:00:20.000
+Hopefully this can transcribe the voice of mine into text and it makes sense and there isn't any inconsistencies.
+
+3
+00:00:20.000 --> 00:00:30.000
+Yes, thank you and goodbye.
+
+1
+00:00:00.000 --> 00:00:10.000
+Hello everyone, I'm testing the recording capabilities of the Whisper Open AI Python script that I got from the internet.
+
+2
+00:00:10.000 --> 00:00:20.000
+Hopefully this can transcribe the voice of mine into text and it makes sense and there isn't any inconsistencies.
+
+3
+00:00:20.000 --> 00:00:30.000
+Yes, thank you and goodbye.
+
+1
+00:00:00.000 --> 00:00:10.000
+Hello everyone, I'm testing the recording capabilities of the Whisper Open AI Python script that I got from the internet.
+
+2
+00:00:10.000 --> 00:00:20.000
+Hopefully this can transcribe the voice of mine into text and it makes sense and there isn't any inconsistencies.
+
+3
+00:00:20.000 --> 00:00:30.000
+Yes, thank you and goodbye.
+
+1
+00:00:00.000 --> 00:00:10.000
+Hello everyone, I'm testing the recording capabilities of the Whisper Open AI Python script that I got from the internet.
+
+2
+00:00:10.000 --> 00:00:20.000
+Hopefully this can transcribe the voice of mine into text and it makes sense and there isn't any inconsistencies.
+
+3
+00:00:20.000 --> 00:00:30.000
+Yes, thank you and goodbye.
+
+1
+00:00:00.000 --> 00:00:10.000
+Hello everyone, I'm testing the recording capabilities of the Whisper Open AI Python script that I got from the internet.
+
+2
+00:00:10.000 --> 00:00:20.000
+Hopefully this can transcribe the voice of mine into text and it makes sense and there isn't any inconsistencies.
+
+3
+00:00:20.000 --> 00:00:30.000
+Yes, thank you and goodbye.
+
+1
+00:00:00.000 --> 00:00:12.000
+Today is Monday the 27th of February 2023. It is currently 7.54pm. The temperature is
+
+2
+00:00:12.000 --> 00:00:18.000
+4 degrees Celsius and it's cloudy. I'm currently in Edinburgh. Edinburgh, the United
+
+3
+00:00:18.000 --> 00:00:26.000
+Kingdom. I am using a Windows 10 Azus laptop. I'm currently sitting in my room and my desk.
+
+4
+00:00:26.000 --> 00:00:36.000
+The light is on. My bed is made. The heater is off. I need to make some food. I have my weekly plan
+
+5
+00:00:36.000 --> 00:00:42.000
+sitting next to me on the desk. I haven't filled out all the options just yet but I will get to that
+
+6
+00:00:42.000 --> 00:00:50.000
+at the end of the day. My phone is next to me here. It's at currently 16% battery. The time is
+
+7
+00:00:50.000 --> 00:01:00.000
+5 to 8 now. Just coming up to 1 minute of recording time now. Thank you very much for listening. Bye.
 
