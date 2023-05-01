@@ -1,5 +1,6 @@
 import whisper, os, tkinter as tk
 from tkinter.filedialog import askopenfilename
+from tkinter import messagebox
 from tkinter import ttk
 from PIL import Image, ImageTk
 from datetime import timedelta
@@ -20,6 +21,7 @@ SecondaryColour = "#dddddd" #Light Grey
 SecondaryColour2 = "#808080" #Light Grey - slightly darker
 
 Transcribing = False
+i = 0
 
 ##################################################################
 #Window Initalistion
@@ -28,7 +30,7 @@ Transcribing = False
 #Creating the window and setting the properties
 window = tk.Tk() 
 window_width = 725 #pixels
-window_height = 425 #pixels
+window_height = 400 #pixels
 window_size = str(window_width) + 'x' + str(window_height)
 window.geometry(window_size)
 window.resizable(width = False, height = False)
@@ -82,13 +84,11 @@ notebook = ttk.Notebook(window)
 
 #Creating the frames for each tab
 tab1 = ttk.Frame(notebook, borderwidth=0)
-tab2 = ttk.Frame(notebook, borderwidth=0)
-tab3 = ttk.Frame(notebook, borderwidth=0)
+#tab2 = ttk.Frame(notebook, borderwidth=0)
 
 #Adds the tabs to the notebook
 notebook.add(tab1, text = "File Transcription")
-notebook.add(tab2, text = "Live Transcription")
-notebook.add(tab3, text = "Text-to-Speech")
+#notebook.add(tab2, text = "About")
 notebook.grid(column=0, row=1)
 
 ####################################################################
@@ -97,20 +97,8 @@ notebook.grid(column=0, row=1)
 
 #Restting the app to create a new transcription
 def NewTranscription():
-    #Add codehere
-    return
-
-#Cutting any selected text in the app
-def CutText():
-    return
-
-#Copying any selected text in the app
-def CopyText():
-    return
-
-#Pasting any selected text in the app
-def PasteText():
-    return
+    TranscriptionTextbox.delete("1.0",tk.END)
+    input_entry.delete("0",tk.END)
 
 #Adding the file and path to be transcribed
 def openfile():
@@ -168,17 +156,28 @@ def OpenTranscriptionTextFile():
     #f.write(Transcription.strip())
 
     #Opens the transcription in notepad
-    os.startfile('TextFiles\Transcription.txt')
+    global i
 
-    print("outside function" + str(Transcribing))
+    #while os.path.exists('TextFiles\Transcription%s.txt' % i):
+       # i += 1
+
+    #fh = open("sample%s.xml" % i, "w")
+
+    os.startfile('TextFiles\Transcription%s.txt' % i)
+
+    print("Outside Function = " + str(Transcribing))
 
 
 def transcribe_audio(path):
     
+    global i
+    while os.path.exists('TextFiles\Transcription%s.txt' % i):
+        i += 1
+
     global Transcribing
     Transcribing = True
 
-    print("Inside function" + str(Transcribing))
+    print("Inside Function = " + str(Transcribing))
 
     #Deletes any existing text in the transcription box
     TranscriptionTextbox.delete("1.0", tk.END)
@@ -195,7 +194,7 @@ def transcribe_audio(path):
         segmentId = segment['id']+1
         segment = f"{segmentId}\n{startTime} --> {endTime}\n{text[1:] if text[0] == ' ' else text}\n\n"
 
-        TextFilename = os.path.join("TextFiles", f"Transcription.txt")
+        TextFilename = os.path.join("TextFiles", "Transcription%s.txt" % i)
         with open(TextFilename, 'a', encoding='utf-8') as srtFile:
             srtFile.write(segment)
 
@@ -204,48 +203,35 @@ def transcribe_audio(path):
     
     return TextFilename, Transcribing
 
+def ResetAll():
+    
+    TranscriptionTextbox.delete("1.0",tk.END)
+    input_entry.delete("0",tk.END)
+
+def About():
+    messagebox.showinfo("showinfo", "Information")
+
 ###################################################################
 #Creating the menubar
 ###################################################################
 
 #Creating the menubar which contains the top level menu buttons
-menubar = tk.Menu(window)
-window.config(menu = menubar)
+#menubar = tk.Menu(window)
+#window.config(menu = menubar)
 
 #Creating the file menu button and all options inside it
-fileMenu = tk.Menu(menubar, tearoff=0)
-menubar.add_cascade(label = "File", menu = fileMenu)
-fileMenu.add_command(label = "New Transcription", command = NewTranscription)
-fileMenu.add_command(label = "Open Transcription as .txt", command = OpenTranscriptionTextFile )
-fileMenu.add_separator()
-fileMenu.add_command(label = "Exit", command = quit)
-
-#Creating the edit menu button and all options inside it
-editMenu = tk.Menu(menubar, tearoff=0)
-menubar.add_cascade(label = "Edit", menu = editMenu)
-editMenu.add_command(label = "Cut", command = CutText)
-editMenu.add_command(label = "Copy", command = CopyText)
-editMenu.add_command(label = "Paste", command = PasteText)
-
-#Creating the whisper button and all options inside it
-whisperMenu = tk.Menu(menubar, tearoff=0)
-menubar.add_cascade(label = "Whisper", menu = whisperMenu)
-whisperMenu.add_command(label = "Tiny")
-whisperMenu.add_command(label = "Base")
-whisperMenu.add_command(label = "Small")
-whisperMenu.add_command(label = "Medium")
-whisperMenu.add_command(label = "Large")
-
-#Creating the view menu button and all options inside it
-viewMenu = tk.Menu(menubar, tearoff=0)
-menubar.add_cascade(label = "View", menu = viewMenu)
-viewMenu.add_command(label = "Statistics Bar")
+#fileMenu = tk.Menu(menubar, tearoff=0)
+#menubar.add_cascade(label = "File", menu = fileMenu)
+#fileMenu.add_command(label = "New Transcription", command = NewTranscription)
+#fileMenu.add_command(label = "Open Transcription as .txt", command = OpenTranscriptionTextFile )
+#fileMenu.add_separator()
+#fileMenu.add_command(label = "Exit", command = quit)
 
 #Creating the help menu button and all options inside it
-helpMenu = tk.Menu(menubar, tearoff=0)
-menubar.add_cascade(label = "Help", menu = helpMenu)
-helpMenu.add_command(label = "Instructions")
-helpMenu.add_command(label = "About")
+#helpMenu = tk.Menu(menubar, tearoff=0)
+#menubar.add_cascade(label = "Help", menu = helpMenu)
+#helpMenu.add_command(label = "Instructions")
+#helpMenu.add_command(label = "About", command = About)
 
 ####################################################################
 #Drawing the interface button and text etc.
@@ -294,8 +280,9 @@ input_entry = tk.Entry(BodyFrame,
 input_entry.grid(column = 1, row = 2, sticky = tk.W, padx = (10,10), pady = (20,10))
 input_entry.config(font = ("Calibri, 10"))
 
-#Creating the transcribe button in the window
 
+
+#Creating the transcribe button in the window
 TranscribeButton = tk.Button(BodyFrame,
                                 text  ="Transcribe",
                                 width = 10,
@@ -311,18 +298,32 @@ TranscriptionTextbox = tk.Text(BodyFrame,
             height = 13, 
             width = 80, 
             relief = "groove")
-TranscriptionTextbox.grid(column = 1 , row = 3, sticky = tk.NW, padx = (10,10), pady = (10,10))
+TranscriptionTextbox.grid(column = 1 , row = 3, rowspan=4, sticky = tk.NW, padx = (10,10), pady = (10,10))
 TranscriptionTextbox.config(font = ("Calibri, 10"))
 
 #Creating the save to .txt file button
-SaveButton = tk.Button(BodyFrame,
+OpenButton = tk.Button(BodyFrame,
                         text = "Open .txt",
                         width = 10,
                         bg = PrimaryColour, activebackground = "black", activeforeground = "white",
                         relief = "flat",
                         command = OpenTranscriptionTextFile)
-SaveButton.grid(column = 0, row = 3, sticky = tk.S, padx = (20,10), pady = (20,10))
-SaveButton.config(font = "Calibri 10", fg = "white")
+OpenButton.grid(column = 0, row = 3, sticky = tk.NW, padx = (20,10), pady = (50,10))
+OpenButton.config(font = "Calibri 10", fg = "white")
+
+
+#Creating the reset all button
+ResetAllButton = tk.Button(BodyFrame,
+                        text = "Reset All",
+                        width = 10,
+                        bg = PrimaryColour, activebackground = "black", activeforeground = "white",
+                        relief = "flat",
+                        command = ResetAll)
+ResetAllButton.grid(column = 0, row = 3, sticky = tk.NW, padx = (20,10), pady = (190,10))
+ResetAllButton.config(font = "Calibri 10", fg = "white")
+
+#AboutMessage = tk.Label(tab2, text = "Created by Kafele Jabari Palmer-Hunt")
+#AboutMessage.pack(side = "top")
 
 #####################################################################
 #tkinter main loop
