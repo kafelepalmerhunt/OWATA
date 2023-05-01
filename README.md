@@ -1,1 +1,1 @@
-# TranscriptionTool
+# WhisperTranscriptionTool
