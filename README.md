@@ -8,3 +8,5 @@ Running the application requires ~1GB Vram.
 
 This project was created to help gain a better understanding of Python programming and how to create a finished product from start to finish. 
 There is no intention to monetise this currently. 
+
+<img width="545" alt="OWATA_001" src="https://user-images.githubusercontent.com/125098654/236674419-c89facb8-7a11-4df2-9d77-1ea021d34fdc.png">
