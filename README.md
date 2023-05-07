@@ -1,1 +1,1 @@
-# WhisperTranscriptionTool
+# OWATA
