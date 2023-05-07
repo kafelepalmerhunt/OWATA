@@ -16,6 +16,6 @@ Instructions
 3) Click the "Transcribe" button to change the audio into text. Will appear in the text box.
 4) Either select, copy and paste the transcription in the textbox or open the text file using the "Open .txt" button.
 
-Google Drive Link for Executable - https://drive.google.com/file/d/16QsHfeVqZwqmkfc5KZMtopDomHlMVjhG/view?usp=share_link
+Google Drive Link for Executable (~220MB)- https://drive.google.com/file/d/16QsHfeVqZwqmkfc5KZMtopDomHlMVjhG/view?usp=share_link
 
 <img width="545" alt="OWATA_001" src="https://user-images.githubusercontent.com/125098654/236674419-c89facb8-7a11-4df2-9d77-1ea021d34fdc.png">
